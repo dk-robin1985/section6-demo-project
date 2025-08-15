@@ -29,18 +29,19 @@ jobs:
       APP_OWNER: ${{ vars.APP_OWNER }}
       APP_VERSION: ${{ vars.APP_VERSION }}
     steps:
-      - name: Display Custom Linux Environment
-        run: |
-          echo "APP_ENV: $APP_ENV"
-          echo "APP_OWNER: $APP_OWNER"
-          echo "APP_VERSION: $APP_VERSION"
-      
-      - name: Get Code
+      # 1. 首先检出代码
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           clean: false
           fetch-depth: 0
           ref: ${{ github.event.inputs.branch_to_deploy }}
+
+      - name: Display Custom Linux Environment
+        run: |
+          echo "APP_ENV: $APP_ENV"
+          echo "APP_OWNER: $APP_OWNER"
+          echo "APP_VERSION: $APP_VERSION"
       
       - name: Cache Dependencies
         uses: actions/cache@v4
@@ -48,7 +49,7 @@ jobs:
           path: ~/.npm
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
       
-      # 使用新创建的 Node.js Setup Action
+      # 2. 然后使用本地 action
       - name: Setup Node.js Application
         uses: ./.github/actions/nodejs-setup
         with:
