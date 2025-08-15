@@ -27,18 +27,18 @@ jobs:
 
 
     steps:
-    - name: Get Code
-      uses: actions/checkout@v4
-      with:
-        clean: false
-        fetch-depth: 0
-        ref: ${{ inputs.branch_to_deploy }}
+      - name: Get Code
+        uses: actions/checkout@v4
+        with:
+          clean: false
+          fetch-depth: 0
+          ref: ${{ inputs.branch_to_deploy }}
 
-    - name: Cache Dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: npm-deps-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-deps-${{ hashFiles('**/package-lock.json') }}
 
       - name: Setup Environment
         uses: ./.github/actions/setup
