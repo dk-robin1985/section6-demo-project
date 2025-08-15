@@ -41,7 +41,7 @@ jobs:
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
 
       - name: Setup Environment
-        uses: ./.github/actions/setup
+        uses: .github/actions/setup
         with:
           mongodb_username: ${{ secrets.MONGODB_USERNAME }}
           mongodb_password: ${{ secrets.MONGODB_PASSWORD }}
@@ -57,7 +57,7 @@ jobs:
 
     steps:
       - name: Deploy Environment
-        uses: ./.github/actions/deploy
+        uses: .github/actions/deploy
         with:
           mongodb_username: ${{ secrets.MONGODB_USERNAME }}
           mongodb_db_name: ${{ env.MONGODB_DB_NAME }}
