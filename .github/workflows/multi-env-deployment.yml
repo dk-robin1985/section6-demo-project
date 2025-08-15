@@ -51,9 +51,6 @@ jobs:
       - name: Cache Dependencies
         uses: actions/cache@v4
         with:
-          clean: false
-          fetch-depth: 0
-          ref: ${{ github.event.inputs.branch_to_deploy }}
           path: ~/.npm
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
 
