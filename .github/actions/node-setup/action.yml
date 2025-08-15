@@ -1,0 +1,23 @@
+name: 'Node.js Setup'
+description: 'Install dependencies, run server and tests for Node.js application'
+
+inputs:
+  port:
+    description: 'Port number for the server'
+    required: true
+    default: '8080'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Run Server
+      shell: bash
+      run: npm start & npx wait-on http://127.0.0.1:${{ inputs.port }}
+
+    - name: Run Tests
+      shell: bash
+      run: npm test
