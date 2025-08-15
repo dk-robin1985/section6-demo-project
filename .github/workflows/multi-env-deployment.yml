@@ -1,4 +1,4 @@
-name: Deployment
+name: Multi-env-eployment
 
 on:
   workflow_dispatch:
