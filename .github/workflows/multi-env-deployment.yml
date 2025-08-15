@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Setup Environment
-        uses: ./actions/setup
+        uses: ./.github/actions/setup
         with:
           mongodb_username: ${{ secrets.MONGODB_USERNAME }}
           mongodb_password: ${{ secrets.MONGODB_PASSWORD }}
@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Deploy Environment
-        uses: ./actions/deploy
+        uses: ./.github/actions/deploy
         with:
           mongodb_username: ${{ secrets.MONGODB_USERNAME }}
           mongodb_db_name: ${{ env.MONGODB_DB_NAME }}
