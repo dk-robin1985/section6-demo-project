@@ -1,0 +1,30 @@
+name: 'Deploy Environment'
+description: 'Deploy to the specified environment.'
+inputs:
+  mongodb_username:
+    description: 'MongoDB Username'
+    required: true
+  mongodb_db_name:
+    description: 'MongoDB Database Name'
+    required: true
+  environment:
+    description: 'Environment to deploy to'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Output Information
+      run: |
+        echo "MONGODB_USERNAME: ${{ inputs.mongodb_username }}"
+        echo "MONGODB_DB_NAME: ${{ inputs.mongodb_db_name }}"
+    
+    - name: Deploy to Environment
+      run: |
+        if [[ "${{ inputs.environment }}" == "prod" ]]; then
+          echo "Deploying to Production"
+        elif [[ "${{ inputs.environment }}" == "test" ]]; then
+          echo "Deploying to Test"
+        elif [[ "${{ inputs.environment }}" == "poc" ]]; then
+          echo "Deploying to POC"
+        fi
