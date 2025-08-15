@@ -51,7 +51,7 @@ jobs:
       
       # 2. 然后使用本地 action
       - name: Setup Node.js Application
-        uses: ./.github/actions/nodejs-setup
+        uses: .github/actions/nodejs-setup
         with:
           port: ${{ env.PORT }}
       
